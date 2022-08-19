@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# @Author :
+# @Author : xuyingjie
 # @File : train.py
 
 import os
