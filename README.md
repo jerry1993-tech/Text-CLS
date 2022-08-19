@@ -7,7 +7,7 @@
 
 * **Bert/MacBert/RoBerta/DistilBert/AlBert/Electra/XLNet各种预训练模型训练**
 * **支持二分类和多分类**   
-* **项目代码支持单例测试和批量测试**
+* **支持单例测试和批量测试**
 * **保存为 pb 文件可供上线部署** 
 
 ## 2、数据集
