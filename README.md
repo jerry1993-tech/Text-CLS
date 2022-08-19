@@ -33,7 +33,7 @@ Date| Version     |Describe
 ### 配置文件
 在config.py中配置好各个参数，文件中有详细参数说明
 
-### 训练分类器
+### 训练
 参数配置完后开始模型训练
 ```
 # [train_classifier, predict_single, predict_test, save_pb_model]
