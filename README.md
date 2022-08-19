@@ -1,4 +1,6 @@
 # Text-CLS
+
+## 1、项目介绍
 此 hub 是基于Tensorflow2.x的文本分类任务
 
 通过对 Config 文件配置，可支持如下功能：
@@ -8,10 +10,10 @@
 * **项目代码支持单例测试和批量测试**
 * **保存为pb文件可供部署** 
 
-## 数据集
+## 2、数据集
 **数据：[科大讯飞中文语义病句识别挑战赛数据集](https://challenge.xfyun.cn/topic/info?type=sick-sentence-discrimination&option=stsj)** 
 
-## 运行环境
+## 3、运行环境
 * python 3.7.8
 * tensorflow-gpu==2.2.0
 * tensorflow-addons==0.15.0
@@ -20,14 +22,14 @@
 * pandas==1.3.5
 * scikit-learn==1.0.2
 
-## 版本情况
+## 4、版本情况
 Date| Version     |Describe
 :---|:-------|---
 2022-04-01| v1.0.0 |初始仓库
-2020-08-10| v2.0.0 |预训练模型基本版项目
+2022-08-10| v2.0.0 |预训练模型基本版
 
 
-## 使用
+## 5、使用
 ### 配置文件
 在config.py中配置好各个参数，文件中有详细参数说明
 

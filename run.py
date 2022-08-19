@@ -8,7 +8,6 @@ import sys
 import json
 import random
 import numpy as np
-import pandas as pd
 import tensorflow as tf
 
 local_dir = os.path.abspath('..')
@@ -83,25 +82,3 @@ if __name__ == '__main__':
                 break
             result = predictor.predict_single(sentence)
             print(result)
-
-    # # 预测无标注数据的 file
-    # logger.info(json.dumps(classifier_config, indent=2, ensure_ascii=False))
-    # data_manager = DataManager(logger)
-    # logger.info('mode: predict_single')
-    # logger.info('model: {}'.format(classifier_config['classifier']))
-    # predictor = Predictor(data_manager, logger)
-    # results = list()
-    # test_df = pd.read_csv(classifier_config['test_file'], sep="\t")
-    # for sentence in test_df['text'].values:
-    #     y_pred, _ = predictor.predict_single(sentence)
-    #     results.append(y_pred)
-    #
-    # test_df2 = pd.read_csv(classifier_config['test_file2'], sep="\t")
-    # # test_df2.insert(test_df2.shape[1], 'label', results)
-    # test_df2['label'] = results
-    # test_df2.to_csv(classifier_config['test_file2'], sep="\t", index=False)
-
-
-
-
-

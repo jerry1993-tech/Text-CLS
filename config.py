@@ -15,17 +15,15 @@ classifier_config = {
     # 预训练模型：Bert/MacBert/RoBerta/DistilBert/AlBert/Electra/XLNet
     'classifier': 'MacBert',
     # 若选择Bert系列微调做分类，请在pretrained指定预训练模型的版本
-    'pretrained': '/Users/xuyingjie/PycharmProjects/Tensorflow_Pytorch_NLP/Text_CLS/pre_models/chinese_macbert_base',
+    'pretrained': 'macbert-base-chinese',
     # 训练数据集
-    'train_file': '/Users/xuyingjie/PycharmProjects/Tensorflow_Pytorch_NLP/Text_CLS/data/训练集/train.csv',
+    'train_file': '训练集/train.csv',
     # 验证数据集
     'val_file': '',
     'set_val_rate': 0.15,
     # 测试数据集
-    'test_file': '/Users/xuyingjie/PycharmProjects/Tensorflow_Pytorch_NLP/Text_CLS/data/测试集/test1.csv',
-    'test_file2': '/Users/xuyingjie/PycharmProjects/Tensorflow_Pytorch_NLP/Text_CLS/data/提交示例.csv',
-    # 引入外部的词嵌入,可选word2vec、Bert
-    # word2vec:使用word2vec词向量做特征增强
+    'test_file': '测试集/test1.csv',
+    # 引入外部的词嵌入，Bert作特征特征提取层
     # 不填写则随机初始化的Embedding
     'embedding_method': '',
     # token的粒度,token选择字粒度的时候，词嵌入(embedding_method)无效
@@ -37,7 +35,7 @@ classifier_config = {
     # 类别列表
     'classes': [0, 1],
     # 模型保存的文件夹
-    'checkpoints_dir': '/Users/xuyingjie/PycharmProjects/Tensorflow_Pytorch_NLP/Text_CLS/checkpoints_trained/MacBert_base_model',
+    'checkpoints_dir': 'MacBert_base_model',
     # 模型保存的名字
     'checkpoint_name': 'MacBert_base_model',
     # 设置随机种子便于结果复现
