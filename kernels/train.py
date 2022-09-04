@@ -16,6 +16,8 @@ local_dir = os.path.abspath('..')
 sys.path.append(local_dir)
 from config import classifier_config
 from kernels.utils.cal_metrics import cal_metrics
+from kernels.tricks.adversarial_fgm import FGM
+from kernels.tricks.adversarial_pgd import PGD
 tf.keras.backend.set_floatx('float32')
 tf.get_logger().setLevel('ERROR')
 
@@ -32,12 +34,20 @@ class Train:
         self.patient = classifier_config['patient']
         self.batch_size = data_manager.batch_size
 
-        self.loss_function = CategoricalCrossentropy()
+        self.use_gan = classifier_config['use_gan']
+        self.gan_method = classifier_config['gan_method']
+        self.k = classifier_config['attack_round']
 
         learning_rate = classifier_config['learning_rate']
         weight_decay = classifier_config['weight_decay']
         classifier = classifier_config['classifier']
         num_classes = data_manager.max_label_number
+
+        if classifier_config['use_label_smoothing']:
+            smooth_factor = classifier_config['smooth_factor']
+            self.loss_function = CategoricalCrossentropy(label_smoothing=smooth_factor)
+        else:
+            self.loss_function = CategoricalCrossentropy()
 
         if classifier_config['optimizer'] == 'Adagrad':
             self.optimizer = tf.keras.optimizers.Adagrad(learning_rate=learning_rate)
@@ -116,6 +126,26 @@ class Train:
                 # 将预训练模型里面的 pooler 层的参数去掉
                 variables = [var for var in variables if 'pooler' not in var.name]
                 gradients = tape.gradient(loss, variables)
+
+                # 使用对抗训练
+                if self.use_gan:
+                    if self.gan_method == 'fgm':
+                        with tf.GradientTape() as gan_tape:
+                            logits = self.model(X_train_batch, training=1)
+                            loss_vec = self.loss_function(y_true=y_train_batch, y_pred=logits)
+                            loss = tf.reduce_mean(loss_vec)
+                        adv_fgm = FGM(variables, gradients, gan_tape, loss)
+                        variables, gradients = adv_fgm.attack_calculate()
+                    elif self.gan_method == 'pgd':
+                        # GradientTape资源调用gradient无法多次计算梯度，需开启persistent属性，且调用后需被释放
+                        with tf.GradientTape(persistent=True) as gan_tape:
+                            logits = self.model(X_train_batch, training=1)
+                            loss_vec = self.loss_function(y_true=y_train_batch, y_pred=logits)
+                            loss = tf.reduce_mean(loss_vec)
+                        adv_pgd = PGD(variables, gradients, gan_tape, loss)
+                        variables, gradients = adv_pgd.attack_calculate(k=self.k)
+                        # 手动删除这个上下文gan_tape，释放资源
+                        del gan_tape
 
                 # 反向传播，自动微分计算
                 self.optimizer.apply_gradients(zip(gradients, variables))

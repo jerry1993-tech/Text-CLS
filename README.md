@@ -9,6 +9,8 @@
 * **支持二分类和多分类**   
 * **支持单例测试和批量测试**
 * **保存为 pb 文件可供上线部署** 
+* **支持对抗训练 fgm/pgd**
+* **支持 label_smoothing**
 
 ## 2、数据集
 **数据：[科大讯飞中文语义病句识别挑战赛数据集](https://challenge.xfyun.cn/topic/info?type=sick-sentence-discrimination&option=stsj)** 
@@ -27,6 +29,7 @@ Version     |Describe
 :-------|---
 v1.0.0 |初始仓库
 v2.0.0 |预训练模型基本版
+v2.1.0 |添加训练 tricks
 
 
 ## 5、使用

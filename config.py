@@ -64,5 +64,17 @@ classifier_config = {
     'dropout_rate': 0.5,
     # 若为二分类则使用binary
     # 多分类使用micro或macro
-    'metrics_average': 'micro'
+    'metrics_average': 'micro',
+    # 是否使用GAN进行对抗训练
+    'use_gan': False,
+    # 目前支持FGM和PGD两种方法
+    # fgm:Fast Gradient Method
+    # pgd:Projected Gradient Descent
+    'gan_method': 'fgm',
+    # 对抗次数
+    'attack_round': 3,
+    # 使用标签平滑
+    # 主要用在预训练模型微调，直接训练小模型使用标签平滑会带来负面效果，慎用
+    'use_label_smoothing': True,
+    'smooth_factor': 0.1
 }
