@@ -76,5 +76,9 @@ classifier_config = {
     # 使用标签平滑
     # 主要用在预训练模型微调，直接训练小模型使用标签平滑会带来负面效果，慎用
     'use_label_smoothing': True,
-    'smooth_factor': 0.1
+    'smooth_factor': 0.1,
+    # 类别样本比例失衡的时候可以考虑使用
+    'use_focal_loss': True,
+    # focal loss的各个标签权重
+    'weight': None
 }

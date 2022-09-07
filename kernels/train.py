@@ -43,11 +43,16 @@ class Train:
         classifier = classifier_config['classifier']
         num_classes = data_manager.max_label_number
 
-        if classifier_config['use_label_smoothing']:
-            smooth_factor = classifier_config['smooth_factor']
-            self.loss_function = CategoricalCrossentropy(label_smoothing=smooth_factor)
+        if classifier_config['use_focal_loss']:
+            from kernels.tricks.focal_loss import FocalLoss
+            self.loss_function = FocalLoss()
         else:
-            self.loss_function = CategoricalCrossentropy()
+            from tensorflow.keras.losses import CategoricalCrossentropy
+            if classifier_config['use_label_smoothing']:
+                smooth_factor = classifier_config['smooth_factor']
+                self.loss_function = CategoricalCrossentropy(label_smoothing=smooth_factor)
+            else:
+                self.loss_function = CategoricalCrossentropy()
 
         if classifier_config['optimizer'] == 'Adagrad':
             self.optimizer = tf.keras.optimizers.Adagrad(learning_rate=learning_rate)

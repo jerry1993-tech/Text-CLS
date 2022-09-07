@@ -11,6 +11,7 @@
 * **保存为 pb 文件可供上线部署** 
 * **支持对抗训练 fgm/pgd**
 * **支持 label_smoothing**
+* **支持针对样本不均衡的 loss（包括多分类）**
 
 ## 2、数据集
 **数据：[科大讯飞中文语义病句识别挑战赛数据集](https://challenge.xfyun.cn/topic/info?type=sick-sentence-discrimination&option=stsj)** 
