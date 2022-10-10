@@ -25,7 +25,42 @@
 * pandas==1.3.5
 * scikit-learn==1.0.2
 
-## 4、版本情况
+## 4、Project Structure
+```
+.
+├── LICENSE
+├── README.md
+├── __init__.py
+├── config.py                     参数配置文件
+├── data
+│   ├── 提交示例.csv
+│   ├── 测试集
+│   │   └── test1.csv
+│   └── 训练集
+│       └── train.csv
+├── kernels
+│   ├── __init__.py
+│   ├── data_processer.py
+│   ├── data_statistics.py
+│   ├── models
+│   │   └── TFPretrainedModel.py
+│   ├── predict.py
+│   ├── train.py
+│   ├── tricks
+│   │   ├── adversarial_fgm.py
+│   │   ├── adversarial_pgd.py
+│   │   └── focal_loss.py
+│   └── utils
+│       ├── __init__.py
+│       ├── cal_metrics.py
+│       └── logger.py
+├── requirements.txt
+└── run.py
+
+7 directories, 21 files
+```
+
+## 5、版本情况
 Version     |Describe
 :-------|---
 v1.0.0 |初始仓库
@@ -33,7 +68,7 @@ v2.0.0 |预训练模型基本版
 v2.1.0 |添加训练 tricks
 
 
-## 5、使用
+## 6、使用
 ### 配置文件
 在config.py中配置好各个参数，文件中有详细参数说明
 
