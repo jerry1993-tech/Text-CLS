@@ -1,7 +1,7 @@
 # Text-CLS
 
 ## 1、项目介绍
-此 hub 是基于Tensorflow2.x的文本分类任务
+此开源hub是基于Tensorflow2.x的文本分类任务等项目
 
 通过对 Config 文件配置，可支持如下功能：
 
